@@ -7,16 +7,20 @@
 
 ## roadmap
 
-- neovim
-- telescope
-- neotree
-- tree-sitter
-- lualine
-- bufferline
-- catppuccin
-- mason
-- mason-lspconfig
-- nvim-lspconfig
-- none-ls
-- none-ls-extras
-- alpha
+- [x] neovim
+- [x] telescope
+- [x] neotree
+- [x] tree-sitter
+- [x] lualine
+- [x] bufferline
+- [x] catppuccin
+- [x] mason
+- [x] mason-lspconfig
+- [x] nvim-lspconfig
+- [x] none-ls
+- [x] none-ls-extras
+- [x] alpha
+- [x] nvim-autopairs
+- [ ] comments
+- [ ] autocomplete
+- [ ] debugger

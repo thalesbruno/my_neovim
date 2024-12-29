@@ -20,6 +20,8 @@ return {
       local opts = { noremap = true, silent = true }
       vim.keymap.set('n', '<leader><Tab>', ':BufferLineCycleNext<CR>', opts)
       vim.keymap.set('n', '<leader><S-Tab>', ':BufferLineCyclePrev<CR>', opts)
+      -- TODO: add close others?
+      -- TODO: add close to the right/left?
 		end,
 	},
 	{
