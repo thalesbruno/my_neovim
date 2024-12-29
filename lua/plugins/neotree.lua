@@ -22,23 +22,9 @@ return {
       })
       -- keymaps
       local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<leader>h', '<C-w>h', opts)
-      vim.keymap.set('n', '<leader>l', '<C-w>l', opts)
+      vim.keymap.set('n', '<leader>E', '<C-w>h', opts)
+      vim.keymap.set('n', '<leader>B', '<C-w>l', opts)
       vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', opts)
     end
   },
---  {
---    'nvim-treesitter/nvim-treesitter',
---    build = ":TSUpdate",
---    config = function ()
---      local configs = require("nvim-treesitter.configs")
---
---      configs.setup({
---        ensure_installed = {"c", "lua", "typescript" },
---        sync_install = false,
---        highlight = { enable = true },
---        indent = { enable = true },
---      })
---    end
---  }
 }
