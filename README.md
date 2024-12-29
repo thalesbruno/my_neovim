@@ -14,3 +14,4 @@
 - nvim-lspconfig
 - none-ls
 - none-ls-extras
+- alpha
