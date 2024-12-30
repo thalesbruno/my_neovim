@@ -9,7 +9,7 @@ return {
 					offsets = {
 						{
 							filetype = "neo-tree",
-							text = "File Explorer",
+							text = "neovim",
 							highlight = "Directory",
 							separator = true,
 						},
