@@ -28,6 +28,14 @@ return {
       -- button("SPC s l", "  Open last session"),
     }
 
-    alpha.setup(dashboard.opts)
+    alpha.setup({
+      layout = {
+        { type = "padding", val = math.floor(vim.o.lines * 0.25) }, -- Adjust for vertical centering
+        dashboard.section.header,
+        { type = "padding", val = 2 }, -- Space between header and buttons
+        dashboard.section.buttons,
+      },
+      opts = dashboard.opts
+    })
   end,
 }
