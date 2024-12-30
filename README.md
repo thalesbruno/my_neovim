@@ -23,7 +23,6 @@
 - [x] nvim-autopairs
 - [x] git-signs 
 - [x] diffview
-- [ ] lazy-git
 - [x] nvim-comments
-- [ ] autocomplete
+- [x] autocomplete
 - [ ] debugger
