@@ -21,6 +21,9 @@
 - [x] none-ls-extras
 - [x] alpha
 - [x] nvim-autopairs
-- [ ] comments
+- [x] git-signs 
+- [x] diffview
+- [ ] lazy-git
+- [x] nvim-comments
 - [ ] autocomplete
 - [ ] debugger
