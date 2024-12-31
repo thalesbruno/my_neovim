@@ -15,6 +15,7 @@ return {
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<CR>", opts)
       vim.keymap.set("n", "<leader>gq", ":DiffviewClose<CR>", opts)
+      vim.keymap.set("n", "<leader>gh", ":DiffviewFileHistory<CR>", opts)
     end
   }
 }
