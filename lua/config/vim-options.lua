@@ -10,3 +10,10 @@ vim.g.maplocalleader = " "
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>a', 'ggVG', opts)
+vim.keymap.set('n', '<leader>cs', ':nohlsearch<CR>', opts)
+
+vim.keymap.set('n', '<leader>cf', function()
+  vim.cmd('let @+ = expand("%:t")')
+  vim.cmd('echo "File name copied to clipboard"')
+end, opts)
+
