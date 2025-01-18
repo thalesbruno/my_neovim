@@ -26,3 +26,4 @@
 - [x] nvim-comments
 - [x] autocomplete
 - [ ] debugger
+- [x] vim-lazygit
