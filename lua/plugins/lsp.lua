@@ -22,9 +22,9 @@ return {
 
       -- keymaps
       local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<leader>d', vim.lsp.buf.definition, opts)
-      -- TODO: add rename action
+      vim.keymap.set('n', '<leader>i', vim.lsp.buf.hover, opts)
+      -- vim.keymap.set('n', '<leader>d', vim.lsp.buf.definition, opts)
+      vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
       vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
     end
   }

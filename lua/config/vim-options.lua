@@ -11,6 +11,14 @@ vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>a', 'ggVG', opts)
 vim.keymap.set('n', '<leader>cs', ':nohlsearch<CR>', opts)
+vim.keymap.set('n', '<leader>t', ':vsplit<CR><C-w>l', opts)
+vim.keymap.set('n', '<leader>ct', ':close<CR>', opts)
+vim.keymap.set('n', '<leader>l', '<C-w>l', opts)
+vim.keymap.set('n', '<leader>h', '<C-w>h', opts)
+vim.keymap.set('n', '<leader>j', '<C-w>j', opts)
+vim.keymap.set('n', '<leader>k', '<C-w>k', opts)
+vim.keymap.set('n', 'J', '10j', opts)
+vim.keymap.set('n', 'K', '10k', opts)
 
 vim.keymap.set('n', '<leader>cf', function()
   vim.cmd('let @+ = expand("%:t")')

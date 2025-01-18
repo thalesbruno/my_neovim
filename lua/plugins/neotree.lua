@@ -14,6 +14,10 @@ return {
           winbar = true
         },
         filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
           follow_current_file = {
             enabled = true,
             leave_dirs_open = false
@@ -22,11 +26,11 @@ return {
       })
       -- keymaps
       local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<leader>E', '<C-w>h', opts)
-      vim.keymap.set('n', '<leader>B', '<C-w>l', opts)
+      -- vim.keymap.set('n', '<leader>E', '<C-w>h', opts)
+      -- vim.keymap.set('n', '<leader>B', '<C-w>l', opts)
       vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', opts)
-      vim.keymap.set('n', '<leader>F', ':Neotree filesystem<CR>', opts)
-      vim.keymap.set('n', '<leader>G', ':Neotree git_status<CR>', opts)
+      -- vim.keymap.set('n', '<leader>F', ':Neotree filesystem<CR>', opts)
+      -- vim.keymap.set('n', '<leader>G', ':Neotree git_status<CR>', opts)
     end
   },
 }
