@@ -28,3 +28,4 @@
 - [ ] debugger
 - [x] vim-lazygit
 - [x] toggleterm
+- [x] rest-vim 
