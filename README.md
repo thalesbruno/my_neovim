@@ -27,3 +27,4 @@
 - [x] autocomplete
 - [ ] debugger
 - [x] vim-lazygit
+- [x] toggleterm
