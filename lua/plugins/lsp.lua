@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = { 'lua_ls', 'ts_ls' }
+        ensure_installed = { 'lua_ls', 'ts_ls', 'zls' }
       })
     end
   },
@@ -21,7 +21,7 @@ return {
       lspconfig.ts_ls.setup({})
 
       -- keymaps
-      local opts = { noremap = true, silent = true }
+      local opts = { noremap = true, silent = true, desc = 'LSP' }
       vim.keymap.set('n', '<leader>i', vim.lsp.buf.hover, opts)
       -- vim.keymap.set('n', '<leader>d', vim.lsp.buf.definition, opts)
       vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)

@@ -8,7 +8,7 @@ vim.cmd("set cursorline")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true, desc = 'Vim' }
 vim.keymap.set('n', '<leader>a', 'ggVG', opts)
 vim.keymap.set('n', '<leader>cs', ':nohlsearch<CR>', opts)
 vim.keymap.set('n', '<leader>n', ':vsplit<CR><C-w>l', opts)
@@ -26,3 +26,8 @@ vim.keymap.set('n', '<leader>cf', function()
   vim.cmd('echo "File name copied to clipboard"')
 end, opts)
 
+vim.keymap.set('v', '<leader>cs', function()
+  -- Use the yank command to copy the visual selection to the system clipboard
+  vim.cmd('normal! "+y')
+  vim.cmd('echo "Selected text copied to clipboard"')
+end, { noremap = true, silent = true })
