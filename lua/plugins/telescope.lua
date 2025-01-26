@@ -10,6 +10,7 @@ return {
 			end, { desc = "Telescope find files" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 			vim.keymap.set("n", "<leader>fh", builtin.oldfiles, { desc = "Telescope previously open files" })
+      vim.keymap.set('n', '<leader>fu', builtin.grep_string, { desc = 'Telescope grep string under cursor' })
 			vim.keymap.set("n", "<leader>f?", builtin.keymaps, { desc = "Telescope keymappings" })
 			vim.keymap.set(
 				"n",
