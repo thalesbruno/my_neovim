@@ -29,3 +29,4 @@
 - [x] vim-lazygit
 - [x] toggleterm
 - [x] rest-vim 
+- [x] tree-sitter-context 
