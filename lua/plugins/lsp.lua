@@ -33,6 +33,7 @@ return {
 				{ desc = "LSP: renames all references to the symbol under the cursor" }
 			)
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: code action" })
-		end,
+      vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "LSP: diagnostic on float window" })
+    end,
 	},
 }
