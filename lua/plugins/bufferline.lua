@@ -23,9 +23,9 @@ return {
       })
       vim.opt.termguicolors = true
       local opts = { noremap = true, silent = true }
-      vim.keymap.set("n", "<leader><Tab>", ":BufferLineCycleNext<CR>", opts)
-      vim.keymap.set("n", "<leader><S-Tab>", ":BufferLineCyclePrev<CR>", opts)
-      vim.keymap.set("n", "<leader>Q", ":BufferLineCloseOthers<CR>", opts)
+      vim.keymap.set("n", "<leader><Tab>l", ":BufferLineCycleNext<CR>", opts)
+      vim.keymap.set("n", "<leader><Tab>h", ":BufferLineCyclePrev<CR>", opts)
+      -- vim.keymap.set("n", "<leader>Q", ":BufferLineCloseOthers<CR>", opts)
     end,
   },
   {

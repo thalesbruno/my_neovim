@@ -19,11 +19,13 @@ return {
 
     dashboard.section.buttons.val = {
       button("SPC e", "  Open file explorer"),
+      button(":Lazy sync", "󰒲  Sync Lazy", ":Lazy sync <cr>"),
       button("e", "  New file", "<cmd>ene <CR>"),
       button("SPC f f", "󰈞  Find file"),
-      button("SPC f h", "󰊄  Recently opened files"),
-      button("SPC f r", "  Frecency/MRU"),
+      button("SPC f h", "  Recently opened files"),
       button("SPC f g", "󰈬  Find word"),
+      button("wqa", "󰈆  Quit", ":wqa <cr>"),
+      button("qa!", "󰩈  Force quit", ":qa! <cr>"),
       -- button("SPC f m", "  Jump to bookmarks"),
       -- button("SPC s l", "  Open last session"),
     }
