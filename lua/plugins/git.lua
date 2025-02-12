@@ -18,11 +18,12 @@ return {
 		"sindrets/diffview.nvim",
 		config = function()
 			vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "Git diffview: open file diff view" })
-			vim.keymap.set("n", "<leader>gq", ":DiffviewClose<CR>", { desc = "Git diffview: close git diff view" })
+			-- vim.keymap.set("n", "<leader>gq", ":DiffviewClose<CR>", { desc = "Git diffview: close git diff view" })
+			vim.keymap.set("n", "q", ":DiffviewClose<CR>", { desc = "Git diffview: close git diff view" })
 			vim.keymap.set(
 				"n",
 				"<leader>gh",
-				":DiffviewFileHistory %<CR>",
+				":DiffviewFileHistory % --no-merges<CR>",
 				{ desc = "Git diffview: view file history" }
 			)
 		end,

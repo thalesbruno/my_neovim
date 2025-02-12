@@ -1,7 +1,8 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    -- tag = "0.1.8",
+    branch = "master",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       {
@@ -55,10 +56,19 @@ return {
         builtin.current_buffer_fuzzy_find,
         { desc = "Telescope Live fuzzy search inside of the currently open buffer" }
       )
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope List open buffers" })
       vim.keymap.set("n", "<leader>fd", builtin.lsp_definitions, {
         desc =
         "Telescope Goto the definition of the word under the cursor, if there's only one, otherwise show all options in Telescope",
       })
+
+      -- git pickers
+      vim.keymap.set(
+        {"n", "v"},
+        "<leader>gs",
+        builtin.git_bcommits_range,
+        { desc = "Telescope git - open commits for selected range" }
+      )
     end,
   },
   {
