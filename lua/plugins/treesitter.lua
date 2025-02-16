@@ -5,7 +5,7 @@ return {
     config = function()
       local treesitter_configs = require("nvim-treesitter.configs")
       treesitter_configs.setup({
-        ensure_installed = { "lua", "zig", "javascript", "typescript", "html", "css", "graphql", "json" },
+        ensure_installed = { "lua", "javascript", "typescript", "html", "css", "graphql", "json", "zig" },
         highlight = { enable = true },
         indent = { enable = true },
       })

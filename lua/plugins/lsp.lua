@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls", "zls", "graphql", "jsonls" },
+				ensure_installed = { "lua_ls", "ts_ls", "graphql", "jsonls", "zls" },
 			})
 		end,
 	},
@@ -19,6 +19,11 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
 			lspconfig.ts_ls.setup({})
+      lspconfig.graphql.setup({})
+      lspconfig.jsonls.setup({})
+      lspconfig.zls.setup({
+      cmd = { vim.fn.expand("~/Codes/zig/zls/zig-out/bin/zls") }
+      })
 
 			vim.keymap.set(
 				"n",
