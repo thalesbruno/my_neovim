@@ -4,7 +4,6 @@ return {
 		config = function()
 			require("gitsigns").setup()
 
-			vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Gitsigns: preview change hunk" })
 			vim.keymap.set(
 				"n",
 				"<leader>gb",
@@ -12,6 +11,12 @@ return {
 				{ desc = "Gitsigns: blame line" }
 			)
 			vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>", { desc = "Gitsigns: blame whole file" })
+			vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Gitsigns: preview change hunk" })
+			vim.keymap.set("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", { desc = "Gitsigns: stage/unstage hunk" })
+			vim.keymap.set("n", "<leader>gS", ":Gitsigns stage_buffer<CR>", { desc = "Gitsigns: stage/unstage file" })
+			vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: reset hunk" })
+			vim.keymap.set("n", "<leader>gR", ":Gitsigns reset_buffer<CR>", { desc = "Gitsigns: reset the entire file" })
+			vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", { desc = "Gitsigns: go to next hunk" })
 		end,
 	},
 	{

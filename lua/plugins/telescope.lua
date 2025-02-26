@@ -64,7 +64,7 @@ return {
 			-- git pickers
 			vim.keymap.set(
 				{ "n", "v" },
-				"<leader>gs",
+				"<leader>gsh",
 				builtin.git_bcommits_range,
 				{ desc = "Telescope git - open commits for selected range" }
 			)
