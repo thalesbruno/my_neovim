@@ -1,7 +1,8 @@
 # My neovim setup
 
+
 <div align="center">
-  <img width="952" alt="Screenshot 2024-12-29 at 11 12 39" src="https://github.com/user-attachments/assets/a87b0632-9926-4959-bc53-c78f15f4fe6b" />
+  <img width="1507" alt="Screenshot 2025-02-26 at 15 50 18" src="https://github.com/user-attachments/assets/4c2d4424-7ce2-42db-8995-4d19875f73eb" />
 </div>
 <img width="1197" alt="Screenshot 2024-12-29 at 00 29 26" src="https://github.com/user-attachments/assets/0a84f61b-3a2b-4803-8fa8-e1805008a467" />
 
@@ -25,8 +26,8 @@
 - [x] diffview
 - [x] nvim-comments
 - [x] autocomplete
-- [ ] debugger
 - [x] vim-lazygit
 - [x] toggleterm
 - [x] rest-vim 
 - [x] tree-sitter-context 
+- [ ] debugger
