@@ -8,16 +8,26 @@ vim.cmd("set cursorline")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+-- vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c-sm:underline,i-ci-ve:blinkwait700-blinkon400-blinkoff250,r-cr-o:underline"
+
+
+
 vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Vim select all" })
 vim.keymap.set("n", "<leader>cl", ":nohlsearch<CR>", { desc = "Vim clear search" })
-vim.keymap.set("n", "<leader>n", ":vsplit<CR><C-w>l", { desc = "Vim open new tab" })
-vim.keymap.set("n", "<leader>ct", ":close<CR>", { desc = "Vim close tab" })
-vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Vim move through tabs" })
-vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "Vim move through tabs" })
-vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Vim move through tabs" })
-vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Vim move through tabs" })
+
+vim.keymap.set("n", "<leader>wn", ":vsplit<CR><C-w>l", { desc = "Vim open new window" })
+vim.keymap.set("n", "<leader>wx", ":close<CR>", { desc = "Vim close window" })
+vim.keymap.set("n", "<leader>w<leader>w", "<c-w><c-w>", { desc = "Vim move through windows" })
+vim.keymap.set("n", "<leader>wh", "<c-w>h", { desc = "Vim move to window on the left" })
+vim.keymap.set("n", "<leader>wl", "<c-w>l", { desc = "Vim move to window on the right" })
+vim.keymap.set("n", "<leader>wj", "<c-w>j", { desc = "Vim move to window below" })
+vim.keymap.set("n", "<leader>wk", "<c-w>k", { desc = "Vim move to window above" })
+
 vim.keymap.set({ "n", "v" }, "J", "10j", { desc = "Vim move 10 lines up" })
 vim.keymap.set({ "n", "v" }, "K", "10k", { desc = "Vim move 10 lines down" })
+
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Vim exit terminal mode" })
 
 vim.keymap.set("n", "<leader>cf", function()

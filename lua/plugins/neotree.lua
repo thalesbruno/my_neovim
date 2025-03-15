@@ -26,11 +26,7 @@ return {
       })
       -- keymaps
       local opts = { noremap = true, silent = true }
-      -- vim.keymap.set('n', '<leader>E', '<C-w>h', opts)
-      -- vim.keymap.set('n', '<leader>B', '<C-w>l', opts)
       vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', opts)
-      -- vim.keymap.set('n', '<leader>F', ':Neotree filesystem<CR>', opts)
-      -- vim.keymap.set('n', '<leader>G', ':Neotree git_status<CR>', opts)
     end
   },
 }

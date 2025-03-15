@@ -9,13 +9,13 @@ return {
         "n",
         "<leader>rr",
         "<cmd>Rest run<cr>",
-        { noremap = true, silent = true, desc = "Rest run request" }
+        { noremap = true, silent = true, desc = "http run request" }
       )
       vim.keymap.set(
         "n",
         "<leader>rl",
         "<cmd>Rest logs<cr>",
-        { noremap = true, silent = true, desc = "Rest request logs" }
+        { noremap = true, silent = true, desc = "http request logs" }
       )
     end,
   },

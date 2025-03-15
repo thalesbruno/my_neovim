@@ -50,7 +50,7 @@ return {
       end, { desc = "Nui Open new file with prompt" })
 
       -- Quit prompt
-      vim.keymap.set("n", "<leader>Q", function()
+      vim.keymap.set("n", "<leader>wq", function()
         local menu = Menu({
           position = "50%",
           size = {
