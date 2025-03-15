@@ -48,6 +48,7 @@ return {
         port = 9229,
         cwd = "${workspaceFolder}",
         restart = true,
+        sourceMaps = true,
       },
     }
 
