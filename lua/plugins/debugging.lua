@@ -65,12 +65,25 @@ return {
     --   },
     -- }
 
-    -- Also support TypeScript
     vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "DAP toggle breakpoint" })
     vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "DAP continue" })
     vim.keymap.set("n", "<leader>dj", dap.step_over, { desc = "DAP step over" })
     vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "DAP step into" })
     vim.keymap.set("n", "<leader>do", dap.step_out, { desc = "DAP step out" })
     vim.keymap.set("n", "<leader>dt", dap.terminate, { desc = "DAP terminate" })
+
+    -- customizations
+    -- Define highlight groups for DAP signs
+    vim.api.nvim_set_hl(0, 'DapBreakpointSign', { fg = '#993939' })   -- Dark red
+    vim.api.nvim_set_hl(0, 'DapBreakpointConditionSign', { fg = '#cc7832' })  -- Orange
+    vim.api.nvim_set_hl(0, 'DapLogPointSign', { fg = '#61afef' })     -- Light blue
+    vim.api.nvim_set_hl(0, 'DapStoppedSign', { fg = '#98c379' })      -- Green
+    vim.api.nvim_set_hl(0, 'DapBreakpointRejectedSign', { fg = '#e06c75' })  -- Light red
+
+    vim.fn.sign_define('DapBreakpoint', {text='󰯯 ', texthl='DapBreakpointSign', linehl='', numhl=''})
+    vim.fn.sign_define('DapBreakpointCondition', {text='󰯲 ', texthl='DapBreakpointConditionSign', linehl='', numhl=''})
+    vim.fn.sign_define('DapLogPoint', {text='󰰍 ', texthl='DapLogPointSign', linehl='', numhl=''})
+    vim.fn.sign_define('DapBreakpointRejected', {text=' ', texthl='DapBreakpointRejectedSign', lirenehl='', numhl=''})
+    vim.fn.sign_define('DapStopped', {text=' ', texthl='DapStoppedSign', linehl='', numhl=''})
   end,
 }

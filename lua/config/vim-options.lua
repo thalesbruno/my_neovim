@@ -14,7 +14,7 @@ vim.opt.guicursor = "n-v-c-sm:underline,i-ci-ve:blinkwait700-blinkon400-blinkoff
 
 
 
-vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Vim select all" })
+-- vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Vim select all" })
 vim.keymap.set("n", "<leader>cl", ":nohlsearch<CR>", { desc = "Vim clear search" })
 
 vim.keymap.set("n", "<leader>wn", ":vsplit<CR><C-w>l", { desc = "Vim open new window" })

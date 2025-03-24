@@ -20,6 +20,7 @@ return {
     cursor_applying_provider = nil, -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
     claude = {
       endpoint = "https://api.anthropic.com",
+      -- model = "claude-3-7-sonnet-20250219",
       model = "claude-3-5-sonnet-20241022",
       temperature = 0,
       max_tokens = 4096,
@@ -29,8 +30,8 @@ return {
       ---@alias AvantePosition "right" | "left" | "top" | "bottom" | "smart"
       position = "right",
       wrap = true,    -- similar to vim.o.wrap
-      width = 20,     -- default % based on available width in vertical layout
-      height = 20,    -- default % based on available height in horizontal layout
+      width = 25,     -- default % based on available width in vertical layout
+      height = 25,    -- default % based on available height in horizontal layout
       sidebar_header = {
         enabled = true, -- true, false to enable/disable the header
         align = "center", -- left, center, right for title
@@ -53,6 +54,12 @@ return {
       },
     },
   },
+
+  behaviour = {
+    enable_claude_text_editor_tool_mode = false,
+    auto_suggestions = false, -- Experimental stage
+  },
+
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
@@ -67,7 +74,6 @@ return {
     "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
     -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua",      -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
@@ -95,5 +101,6 @@ return {
     },
   },
 
+  -- Set up keymaps for Avante
   vim.keymap.set("n", "<leader>ax", ":AvanteClear<cr>", { desc = "avante: clear chat history" }),
 }

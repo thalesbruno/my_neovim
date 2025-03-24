@@ -30,4 +30,7 @@
 - [x] toggleterm
 - [x] rest-vim 
 - [x] tree-sitter-context 
-- [ ] debugger
+- [x] nui
+- [x] debugger
+- [x] avante
+- [x] copilot
