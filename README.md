@@ -34,3 +34,4 @@
 - [x] debugger
 - [x] avante
 - [x] copilot
+- [x] conform

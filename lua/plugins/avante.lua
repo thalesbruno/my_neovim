@@ -24,6 +24,7 @@ return {
       model = "claude-3-5-sonnet-20241022",
       temperature = 0,
       max_tokens = 4096,
+      system = "You are a senior full stack engineer at a Big Tech company, especialized in Javascript, Typescript, React, Node, and Bun",
     },
 
     windows = {
