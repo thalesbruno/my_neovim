@@ -35,3 +35,4 @@
 - [x] avante
 - [x] copilot
 - [x] conform
+- [x] nvim-highlight-colors
