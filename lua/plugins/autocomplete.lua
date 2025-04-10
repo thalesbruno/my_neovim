@@ -31,6 +31,7 @@ return {
           { name = 'nvim_lsp' }, -- LSP completions
           { name = 'buffer' },   -- Buffer completions
           { name = 'path' },     -- File path completions
+          { name = 'render-markdown' }, -- Markdown completions
         })
       })
     end

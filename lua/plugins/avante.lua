@@ -1,6 +1,7 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
+  enabled = true,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
     -- add any opts here
@@ -15,13 +16,20 @@ return {
     --   -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
     -- },
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-    provider = "claude",          -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+    provider = "copilot",          -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
     auto_suggestions_provider = "claude",
     cursor_applying_provider = nil, -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
     claude = {
       endpoint = "https://api.anthropic.com",
       -- model = "claude-3-7-sonnet-20250219",
       model = "claude-3-5-sonnet-20241022",
+      temperature = 0,
+      max_tokens = 4096,
+      system = "You are a senior full stack engineer at a Big Tech company, especialized in Javascript, Typescript, React, Node, and Bun",
+    },
+    copilot = {
+      -- endpoint = "https://api.github.com",
+      -- model = "github-copilot",
       temperature = 0,
       max_tokens = 4096,
       system = "You are a senior full stack engineer at a Big Tech company, especialized in Javascript, Typescript, React, Node, and Bun",
@@ -75,6 +83,7 @@ return {
     "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
     -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    -- "zbirenbaum/copilot.lua",
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
@@ -92,14 +101,14 @@ return {
         },
       },
     },
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
-    },
+    -- {
+    --   -- Make sure to set this up properly if you have lazy=true
+    --   "MeanderingProgrammer/render-markdown.nvim",
+    --   opts = {
+    --     file_types = { "markdown", "Avante" },
+    --   },
+    --   ft = { "markdown", "Avante" },
+    -- },
   },
 
   -- Set up keymaps for Avante
