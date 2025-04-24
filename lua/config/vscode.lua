@@ -1,86 +1,68 @@
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
+print("VS Code detected, loading VS Code specific settings.")
+local status_ok, vscode = pcall(require, 'vscode')
+if not status_ok then
+  print("Error loading vscode module for keybindings.")
+  return
 end
-vim.opt.rtp:prepend(lazypath)
 
--- Setup lazy.nvim with minimal configuration
-require("lazy").setup({
-	spec = {
-		-- Only load essential plugins in VSCode mode
-		{
-			"numToStr/Comment.nvim",
-			config = function()
-				require("Comment").setup()
-				vim.keymap.set({ "n", "v" }, "<leader>/", "gcc", { remap = true })
-			end,
-		},
-	},
-	install = {
-		colorscheme = { "habamax" },
-	},
-	checker = { enabled = false },
-})
+-- Define VS Code specific keybindings here
+vim.keymap.set('n', '<leader>fg', function()
+  vscode.action('workbench.action.findInFiles')
+end, { desc = "VSCode: Find in Files" })
 
--- VSCode tab management
-vim.keymap.set(
-	"n",
-	"<leader>q",
-	"<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>",
-	{ noremap = true, silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>h",
-	"<cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>",
-	{ noremap = true, silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>l",
-	"<cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>",
-	{ noremap = true, silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>ff",
-	"<cmd>call VSCodeNotify('workbench.action.quickOpenWithModes')<CR>",
-	{ noremap = true, silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>fd",
-	"<cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>",
-	{ noremap = true, silent = true }
-)
--- VSCode search functionality
-vim.keymap.set(
-	"n",
-	"<leader>fg",
-	"<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>') })<CR>",
-	{ noremap = true, silent = true }
-)
-vim.keymap.set(
-	"v",
-	"<leader>fg",
-	"<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': getline(\"'<\", \"'>\") })<CR>",
-	{ noremap = true, silent = true }
-)
--- Search for usages of the symbol under the cursor
-vim.keymap.set(
-	"n",
-	"<leader>fu",
-	"<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>",
-	{ noremap = true, silent = true }
-)
+vim.keymap.set('n', '<leader>ff', function()
+  vscode.action('workbench.action.quickOpen')
+end, { desc = "VSCode: Quick Open" })
+
+vim.keymap.set('n', '<leader>e', function()
+  vscode.action('workbench.view.explorer')
+end, { desc = "VSCode: Show explorer" })
+
+vim.keymap.set('n', '<leader>l', function()
+  vscode.action('workbench.action.nextEditor')
+end, { desc = "VSCode: next editor" })
+
+vim.keymap.set('n', '<leader>h', function()
+  vscode.action('workbench.action.previousEditor')
+end, { desc = "VSCode: previous editor" })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>/', function()
+  vscode.action('editor.action.commentLine')
+end, { desc = "VSCode: toggle comment" })
+
+vim.keymap.set('n', '<leader>fd', function()
+  vscode.action('editor.action.revealDefinition')
+end, { desc = "VSCode: go to definition" })
+
+vim.keymap.set('n', '<leader>q', function()
+  vscode.action('workbench.action.closeActiveEditor')
+end, { desc = "VSCode: close active editor" })
+
+-- for non-vim tabs
+vim.keymap.set('n', '<c-w>q', function()
+  vscode.action('workbench.action.closeActiveEditor')
+end, { desc = "VSCode: close active editor" })
+
+vim.keymap.set('n', '<leader>et', function()
+  vscode.action('workbench.action.toggleSidebarVisibility')
+end, { desc = "VSCode: toggle primary side bar" })
+
+vim.keymap.set('n', '<leader>at', function()
+  vscode.action('workbench.action.toggleAuxiliaryBar')
+end, { desc = "VSCode: toggle secondary side bar" })
+
+vim.keymap.set('n', '<c-w>h', function()
+  vscode.action('workbench.action.navigateLeft')
+end, { desc = "VSCode: navigate to the left panel" })
+
+vim.keymap.set('n', '<c-w>l', function()
+  vscode.action('workbench.action.navigateRight')
+end, { desc = "VSCode: navigate to the right panel" })
+
+vim.keymap.set('n', '<leader>e', function()
+  vscode.action('workbench.view.explorer')
+end, { desc = "VSCode: show explorer" })
+
+vim.keymap.set('n', '<leader>x', function()
+  vscode.action('workbench.action.showCommands')
+end, { desc = "VSCode: show commands" })
