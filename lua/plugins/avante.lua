@@ -1,7 +1,7 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  enabled = true,
+  enabled = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
     -- add any opts here
@@ -112,5 +112,5 @@ return {
   },
 
   -- Set up keymaps for Avante
-  vim.keymap.set("n", "<leader>ax", ":AvanteClear<cr>", { desc = "avante: clear chat history" }),
+  -- vim.keymap.set("n", "<leader>ax", ":AvanteClear<cr>", { desc = "avante: clear chat history" }),
 }

@@ -12,7 +12,7 @@ vim.g.maplocalleader = " "
 -- vim.opt.guicursor = ""
 vim.opt.guicursor = "n-v-c-sm:underline,i-ci-ve:blinkwait700-blinkon400-blinkoff250,r-cr-o:underline"
 
--- vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Vim select all" })
+vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Vim select all" })
 vim.keymap.set("n", "<leader>cl", ":nohlsearch<CR>", { desc = "Vim clear search" })
 
 vim.keymap.set("n", "<leader>wn", ":vsplit<CR><C-w>l", { desc = "Vim open new window" })
@@ -39,26 +39,26 @@ vim.keymap.set("v", "<leader>c", function()
 end, { desc = "Vim copy test to clipboard" })
 
 vim.keymap.set("n", "<leader>si", function()
-  local file = vim.fn.expand("%:p")  -- Get absolute path of current file
-  local current_dir = vim.fn.expand("%:p:h")  -- Get directory of current file
-  
+  local file = vim.fn.expand("%:p")          -- Get absolute path of current file
+  local current_dir = vim.fn.expand("%:p:h") -- Get directory of current file
+
   -- Function to find the closest node_modules/.bin/eslint by traversing up
   local function find_local_eslint(dir)
     local eslint_path = dir .. "/node_modules/.bin/eslint"
     if vim.fn.filereadable(eslint_path) == 1 then
       return eslint_path
     end
-    
+
     local parent = vim.fn.fnamemodify(dir, ":h")
     if parent == dir then
       return nil
     end
-    
+
     return find_local_eslint(parent)
   end
-  
+
   local eslint_bin = find_local_eslint(current_dir)
-  
+
   if eslint_bin then
     -- Run eslint with only the import/order rule
     local cmd = string.format(":!%s --fix --rule 'import/order: error' %s", eslint_bin, file)
@@ -67,3 +67,15 @@ vim.keymap.set("n", "<leader>si", function()
     vim.notify("Could not find local ESLint installation", vim.log.levels.ERROR)
   end
 end, { desc = "Sort imports using local ESLint" })
+
+vim.keymap.set('n', '<leader>z1', function()
+  vim.cmd("silent! %s/^/'/g")
+  vim.cmd("silent! %s/$/',/g")
+  vim.notify("Added quotes to all lines")
+end, { desc = "Quote lines with single quotes and add comma" })
+
+vim.keymap.set('n', '<leader>z2', function()
+  vim.cmd("silent! %s/^/\"/g")
+  vim.cmd("silent! %s/$/\",/g")
+  vim.notify("Added quotes to all lines")
+end, { desc = "Quote lines with doble quotes and add comma" })

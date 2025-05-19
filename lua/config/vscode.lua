@@ -47,9 +47,13 @@ vim.keymap.set('n', '<leader>et', function()
   vscode.action('workbench.action.toggleSidebarVisibility')
 end, { desc = "VSCode: toggle primary side bar" })
 
-vim.keymap.set('n', '<leader>at', function()
+vim.keymap.set('n', '<c-w>a', function()
   vscode.action('workbench.action.toggleAuxiliaryBar')
 end, { desc = "VSCode: toggle secondary side bar" })
+
+vim.keymap.set('n', '<leader>aa', function()
+  vscode.action('workbench.panel.chat')
+end, { desc = "VSCode: toggle copilot chat" })
 
 vim.keymap.set('n', '<c-w>h', function()
   vscode.action('workbench.action.navigateLeft')
@@ -63,6 +67,30 @@ vim.keymap.set('n', '<leader>e', function()
   vscode.action('workbench.view.explorer')
 end, { desc = "VSCode: show explorer" })
 
+vim.keymap.set('n', '<leader>fc', function()
+  vscode.action('references-view.findReferences')
+end, { desc = "VSCode: Find References (Symbol)" })
+
+-- vim.keymap.set('n', '<leader>fu', function()
+--   vscode.action('')
+-- end, { desc = "VSCode: Find Occurrences (Word)" })
+
 vim.keymap.set('n', '<leader>x', function()
   vscode.action('workbench.action.showCommands')
 end, { desc = "VSCode: show commands" })
+
+vim.keymap.set('n', '<leader>=', function()
+  vscode.action('editor.action.formatDocument')
+end, { desc = "VSCode: show commands" })
+
+vim.keymap.set('n', '<leader>ca', function()
+  vscode.action('editor.action.quickFix')
+end, { desc = "VSCode: show commands" })
+
+vim.keymap.set('n', '<leader>i', function()
+  vscode.action('editor.action.showDefinitionPreviewHover')
+end, { desc = "VSCode: show info" })
+
+vim.keymap.set('n', '<leader>wn', function()
+  vscode.action('workbench.action.splitEditorRight')
+end, { desc = "VSCode: split editor right" })
