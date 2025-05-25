@@ -30,7 +30,9 @@ return {
       vim.keymap.set(
         "n",
         "<leader>i",
-        vim.lsp.buf.hover,
+        function()
+        vim.lsp.buf.hover({ border = "rounded" })
+        end,
         { desc = "LSP: Displays hover information about the symbol under the cursor" }
       )
       vim.keymap.set(
