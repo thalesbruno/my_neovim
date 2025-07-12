@@ -94,3 +94,7 @@ end, { desc = "VSCode: show info" })
 vim.keymap.set('n', '<leader>wn', function()
   vscode.action('workbench.action.splitEditorRight')
 end, { desc = "VSCode: split editor right" })
+
+vim.keymap.set('n', '<leader>r', function()
+  vscode.action('editor.action.rename')
+end, { desc = "VSCode: rename symbol" })

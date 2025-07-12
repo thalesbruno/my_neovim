@@ -15,8 +15,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "MunifTanjim/nui.nvim" },
     config = function()
       local lspconfig = require("lspconfig")
+      local Input = require("nui.input")
+
       lspconfig.lua_ls.setup({})
       lspconfig.ts_ls.setup({})
       lspconfig.graphql.setup({})
@@ -27,20 +30,62 @@ return {
       lspconfig.biome.setup({})
       lspconfig.eslint.setup({})
 
+      local create_input_style = function(title)
+        return {
+          position = "30%",
+          size = {
+            width = 40,
+          },
+          border = {
+            style = "single",
+            text = {
+              top = "[" .. title .. "]",
+              top_align = "center",
+            },
+          },
+          win_options = {
+            winhighlight = "Normal:Normal,FloatBorder:Normal",
+          },
+        }
+      end
+
       vim.keymap.set(
         "n",
         "<leader>i",
         function()
-        vim.lsp.buf.hover({ border = "rounded" })
+          vim.lsp.buf.hover({ border = "rounded" })
         end,
         { desc = "LSP: Displays hover information about the symbol under the cursor" }
       )
-      vim.keymap.set(
-        "n",
-        "<leader>r",
-        vim.lsp.buf.rename,
-        { desc = "LSP: renames all references to the symbol under the cursor" }
-      )
+
+      vim.keymap.set("n", "<leader>r", function()
+        -- Get the current word under cursor as default value
+        local current_name = vim.fn.expand("<cword>")
+
+        local rename_input = Input(create_input_style("Rename Symbol"), {
+          prompt = "> ",
+          default_value = current_name,
+          on_submit = function(value)
+            if value and value ~= "" and value ~= current_name then
+              vim.lsp.buf.rename(value)
+            elseif value == current_name then
+              print("No changes made")
+            else
+              print("Invalid name!")
+            end
+          end,
+        })
+
+        rename_input:map("n", "<Esc>", function()
+          rename_input:unmount()
+        end)
+        rename_input:map("i", "<Esc>", function()
+          rename_input:unmount()
+        end)
+
+        rename_input:mount()
+      end, { desc = "LSP: renames all references to the symbol under the cursor with NUI prompt" })
+
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: code action" })
       vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "LSP: diagnostic on float window" })
       vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, { desc = "LSP: format" })

@@ -2,6 +2,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    enabled = false,
     event = "InsertEnter",
     config = function()
       local copilot = require("copilot")
@@ -26,29 +27,30 @@ return {
       end, { expr = true, desc = "Accept Copilot suggestion or fallback to default <Tab>" })
     end,
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
-      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-    },
-    build = "make tiktoken",                          -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-    },
-    -- See Commands section for default commands if you want to lazy load on them
-
-    config = function()
-      local chat = require("CopilotChat")
-      chat.setup({
-        window = {
-          width = 0.4
-        }
-      })
-      vim.opt.splitright = true
-      vim.keymap.set('n', '<leader>coo', function() chat.open() end, { desc = "copilot chat: open" })
-      vim.keymap.set('n', '<leader>coc', function() chat.close() end, { desc = "copilot chat: close" })
-      vim.keymap.set('n', '<leader>cot', function() chat.toggle() end, { desc = "copilot chat: toggle" })
-    end
-  }
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   enabled = false,
+  --   dependencies = {
+  --     { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+  --     { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+  --   },
+  --   build = "make tiktoken",                          -- Only on MacOS or Linux
+  --   opts = {
+  --     -- See Configuration section for options
+  --   },
+  --   -- See Commands section for default commands if you want to lazy load on them
+  --
+  --   config = function()
+  --     local chat = require("CopilotChat")
+  --     chat.setup({
+  --       window = {
+  --         width = 0.4
+  --       }
+  --     })
+  --     vim.opt.splitright = true
+  --     vim.keymap.set('n', '<leader>coo', function() chat.open() end, { desc = "copilot chat: open" })
+  --     vim.keymap.set('n', '<leader>coc', function() chat.close() end, { desc = "copilot chat: close" })
+  --     vim.keymap.set('n', '<leader>cot', function() chat.toggle() end, { desc = "copilot chat: toggle" })
+  --   end
+  -- }
 }

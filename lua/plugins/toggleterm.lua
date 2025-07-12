@@ -2,7 +2,7 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   config = function()
-    require("toggleterm").setup({ size = 25 })
+    require("toggleterm").setup({ size = vim.o.columns * 0.25, direction = "vertical" })
 
     vim.keymap.set(
       "n",
