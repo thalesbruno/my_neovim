@@ -17,18 +17,50 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "MunifTanjim/nui.nvim" },
     config = function()
-      local lspconfig = require("lspconfig")
       local Input = require("nui.input")
 
-      lspconfig.lua_ls.setup({})
-      lspconfig.ts_ls.setup({})
-      lspconfig.graphql.setup({})
-      lspconfig.jsonls.setup({})
-      lspconfig.zls.setup({
+      -- Configure lua_ls
+      vim.lsp.config['lua_ls'] = {}
+      vim.lsp.enable('lua_ls')
+      
+      -- Configure ts_ls for TypeScript/JavaScript files
+      vim.lsp.config['ts_ls'] = {
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+      }
+      vim.lsp.enable('ts_ls')
+      
+      -- Configure GraphQL only for .graphql files
+      vim.lsp.config['graphql'] = {
+        filetypes = { "graphql" },
+      }
+      vim.lsp.enable('graphql')
+      
+      -- Configure jsonls
+      vim.lsp.config['jsonls'] = {}
+      vim.lsp.enable('jsonls')
+      
+      -- Configure zls
+      vim.lsp.config['zls'] = {
         cmd = { vim.fn.expand("~/Codes/zig/zls/zig-out/bin/zls") },
-      })
-      lspconfig.biome.setup({})
-      lspconfig.eslint.setup({})
+      }
+      vim.lsp.enable('zls')
+      
+      -- Configure biome to not conflict with ts_ls
+      vim.lsp.config['biome'] = {
+        -- filetypes = { "json", "jsonc" },
+        handlers = {
+          ["textDocument/hover"] = function() end,
+        },
+      }
+      vim.lsp.enable('biome')
+      
+      -- Configure eslint to not provide hover info (diagnostic only)
+      -- vim.lsp.config['eslint'] = {
+      --   handlers = {
+      --     ["textDocument/hover"] = function() end,
+      --   },
+      -- }
+      -- vim.lsp.enable('eslint')
 
       local create_input_style = function(title)
         return {
@@ -88,7 +120,6 @@ return {
 
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: code action" })
       vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "LSP: diagnostic on float window" })
-      vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, { desc = "LSP: format" })
     end,
   },
   {
