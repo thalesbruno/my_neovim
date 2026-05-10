@@ -69,9 +69,9 @@ return {
           },
         }, {
           lines = {
-            Menu.item("Cancel"),
             Menu.item("Save and Quit"),
             Menu.item("Discard and Quit"),
+            Menu.item("Cancel"),
           },
           max_width = 30,
           keymap = {
