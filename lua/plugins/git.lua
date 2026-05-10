@@ -26,7 +26,7 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
-		enabled = false,
+		enabled = true,
 		config = function()
 			require("diffview").setup({
 				enhanced_diff_hl = true,

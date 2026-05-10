@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor swap/backup/undo
+*.swp
+*.swo
+*~
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local overrides (not committed)
+.luarc.local.json
+*.local.lua
+
+# Claude Code project state
+.claude/
+
+# Lua dev
+.luacheckcache
