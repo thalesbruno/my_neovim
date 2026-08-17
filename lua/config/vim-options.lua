@@ -12,6 +12,12 @@ vim.g.maplocalleader = " "
 -- vim.opt.guicursor = ""
 vim.opt.guicursor = "n-v-c-sm:underline,i-ci-ve:blinkwait700-blinkon400-blinkoff250,r-cr-o:underline"
 
+-- autor-read modified files
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+	pattern = "*",
+	command = "silent! checktime",
+})
+
 vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Vim select all" })
 vim.keymap.set("n", "<leader>cl", ":nohlsearch<CR>", { desc = "Vim clear search" })
 
@@ -29,53 +35,53 @@ vim.keymap.set({ "n", "v" }, "K", "10k", { desc = "Vim move 10 lines down" })
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Vim exit terminal mode" })
 
 vim.keymap.set("n", "<leader>cf", function()
-  vim.cmd('let @+ = expand("%:t")')
-  vim.cmd('echo "File name copied to clipboard"')
+	vim.cmd('let @+ = expand("%:t")')
+	vim.cmd('echo "File name copied to clipboard"')
 end, { desc = "Vim copy file name to clipboard" })
 
 vim.keymap.set("v", "<leader>c", function()
-  vim.cmd('normal! "+y')
-  vim.cmd('echo "Selected text copied to clipboard"')
+	vim.cmd('normal! "+y')
+	vim.cmd('echo "Selected text copied to clipboard"')
 end, { desc = "Vim copy test to clipboard" })
 
 vim.keymap.set("n", "<leader>si", function()
-  local file = vim.fn.expand("%:p")          -- Get absolute path of current file
-  local current_dir = vim.fn.expand("%:p:h") -- Get directory of current file
+	local file = vim.fn.expand("%:p") -- Get absolute path of current file
+	local current_dir = vim.fn.expand("%:p:h") -- Get directory of current file
 
-  -- Function to find the closest node_modules/.bin/eslint by traversing up
-  local function find_local_eslint(dir)
-    local eslint_path = dir .. "/node_modules/.bin/eslint"
-    if vim.fn.filereadable(eslint_path) == 1 then
-      return eslint_path
-    end
+	-- Function to find the closest node_modules/.bin/eslint by traversing up
+	local function find_local_eslint(dir)
+		local eslint_path = dir .. "/node_modules/.bin/eslint"
+		if vim.fn.filereadable(eslint_path) == 1 then
+			return eslint_path
+		end
 
-    local parent = vim.fn.fnamemodify(dir, ":h")
-    if parent == dir then
-      return nil
-    end
+		local parent = vim.fn.fnamemodify(dir, ":h")
+		if parent == dir then
+			return nil
+		end
 
-    return find_local_eslint(parent)
-  end
+		return find_local_eslint(parent)
+	end
 
-  local eslint_bin = find_local_eslint(current_dir)
+	local eslint_bin = find_local_eslint(current_dir)
 
-  if eslint_bin then
-    -- Run eslint with only the import/order rule
-    local cmd = string.format(":!%s --fix --rule 'import/order: error' %s", eslint_bin, file)
-    vim.cmd(cmd)
-  else
-    vim.notify("Could not find local ESLint installation", vim.log.levels.ERROR)
-  end
+	if eslint_bin then
+		-- Run eslint with only the import/order rule
+		local cmd = string.format(":!%s --fix --rule 'import/order: error' %s", eslint_bin, file)
+		vim.cmd(cmd)
+	else
+		vim.notify("Could not find local ESLint installation", vim.log.levels.ERROR)
+	end
 end, { desc = "Sort imports using local ESLint" })
 
-vim.keymap.set('n', '<leader>z1', function()
-  vim.cmd("silent! %s/^/'/g")
-  vim.cmd("silent! %s/$/',/g")
-  vim.notify("Added quotes to all lines")
+vim.keymap.set("n", "<leader>z1", function()
+	vim.cmd("silent! %s/^/'/g")
+	vim.cmd("silent! %s/$/',/g")
+	vim.notify("Added quotes to all lines")
 end, { desc = "Quote lines with single quotes and add comma" })
 
-vim.keymap.set('n', '<leader>z2', function()
-  vim.cmd("silent! %s/^/\"/g")
-  vim.cmd("silent! %s/$/\",/g")
-  vim.notify("Added quotes to all lines")
+vim.keymap.set("n", "<leader>z2", function()
+	vim.cmd('silent! %s/^/"/g')
+	vim.cmd('silent! %s/$/",/g')
+	vim.notify("Added quotes to all lines")
 end, { desc = "Quote lines with doble quotes and add comma" })
