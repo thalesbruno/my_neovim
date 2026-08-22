@@ -11,9 +11,20 @@ local function read_flavour()
 	return "mocha"
 end
 
+-- Cursor colours, kept identical to the terminal's (see the Ghostty config).
+-- Latte's stock rosewater cursor only reaches 2.3:1 against the background,
+-- which is unreadable in sunlight, so light mode uses mauve instead.
+local cursor = {
+	latte = { bg = "#8839ef", fg = "#eff1f5" },
+	mocha = { bg = "#f5e0dc", fg = "#1e1e2e" },
+}
+
 local function apply(flavour, notify)
 	vim.o.background = (flavour == "latte") and "light" or "dark"
 	vim.cmd.colorscheme("catppuccin-" .. flavour)
+	-- Must come after the colorscheme: loading one clears highlight overrides.
+	vim.api.nvim_set_hl(0, "Cursor", cursor[flavour])
+	vim.api.nvim_set_hl(0, "lCursor", cursor[flavour])
 	pcall(vim.fn.writefile, { flavour }, state_file)
 	if notify then
 		vim.notify("Catppuccin " .. flavour, vim.log.levels.INFO)

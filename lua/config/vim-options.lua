@@ -10,7 +10,9 @@ vim.g.maplocalleader = " "
 
 -- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 -- vim.opt.guicursor = ""
-vim.opt.guicursor = "n-v-c-sm:underline,i-ci-ve:blinkwait700-blinkon400-blinkoff250,r-cr-o:underline"
+-- Blinking block in every mode, matching the terminal cursor. The Cursor/lCursor
+-- colours are set per flavour in lua/plugins/catppuccin.lua.
+vim.opt.guicursor = "a:block-Cursor/lCursor-blinkwait700-blinkon400-blinkoff250"
 
 -- autor-read modified files
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
