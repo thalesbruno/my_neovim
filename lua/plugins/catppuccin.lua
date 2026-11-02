@@ -11,7 +11,7 @@ local function read_flavour()
 	return "mocha"
 end
 
--- Cursor colours, kept identical to the terminal's (see the Ghostty config).
+-- Cursor colours, chosen to match a catppuccin-themed terminal.
 -- Latte's stock rosewater cursor only reaches 2.3:1 against the background,
 -- which is unreadable in sunlight, so light mode uses mauve instead.
 local cursor = {
@@ -55,15 +55,20 @@ return {
 
 		apply(read_flavour())
 
-		-- The keymaps drive the `theme` fish function, so terminal, macOS and every
-		-- open nvim flip together. If it is unavailable, fall back to nvim only.
+		-- Optional system-wide hook: set vim.g.theme_switch_cmd in lua/config/local.lua
+		-- (see local.example.lua) to a command list, where "%s" is replaced by the
+		-- flavour. When unset or failing, only nvim switches.
 		local function switch(mode)
 			local target = mode
 			if mode == "toggle" then
 				target = current_flavour() == "mocha" and "latte" or "mocha"
 			end
-			if vim.fn.executable("fish") == 1 then
-				vim.system({ "fish", "-c", "theme " .. target }, { text = true }, function(res)
+			local hook = vim.g.theme_switch_cmd
+			if type(hook) == "table" and #hook > 0 and vim.fn.executable(hook[1]) == 1 then
+				local cmd = vim.tbl_map(function(part)
+					return (part:gsub("%%s", target))
+				end, hook)
+				vim.system(cmd, { text = true }, function(res)
 					if res.code ~= 0 then
 						vim.schedule(function()
 							apply(target, true)
@@ -77,7 +82,7 @@ return {
 
 		vim.keymap.set("n", "<leader>ut", function()
 			switch("toggle")
-		end, { desc = "Theme toggle light/dark (system-wide)" })
+		end, { desc = "Theme toggle light/dark" })
 
 		vim.keymap.set("n", "<leader>ud", function()
 			switch("mocha")

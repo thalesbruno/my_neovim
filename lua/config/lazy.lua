@@ -26,5 +26,8 @@ require("lazy").setup({
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
+  -- no luarocks: it needs a working build toolchain and breaks on fresh machines.
+  -- rest.nvim's rock dependencies are pulled from git in lua/plugins/http.lua.
+  rocks = { enabled = false },
 })
 

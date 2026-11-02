@@ -1,3 +1,6 @@
+-- Machine-specific overrides (gitignored); see lua/config/local.example.lua
+pcall(require, "config.local")
+
 -- Load basic options and keymaps first
 require("config.vim-options")
 

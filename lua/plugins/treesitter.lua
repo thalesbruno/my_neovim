@@ -12,6 +12,7 @@ return {
           "html",
           "css",
           "graphql",
+          "http",
           "json",
           "zig",
           "markdown",

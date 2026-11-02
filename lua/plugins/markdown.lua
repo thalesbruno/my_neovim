@@ -63,7 +63,10 @@ return {
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = "cd app && yarn install",
+		-- downloads a prebuilt binary, so no node/yarn is needed
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 			-- Keep one preview tab and update it as Markdown buffers change.

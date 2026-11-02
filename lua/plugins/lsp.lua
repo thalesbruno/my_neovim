@@ -8,8 +8,31 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "graphql", "jsonls", "rust_analyzer", "zls" },
+      require("mason-lspconfig").setup({})
+    end,
+  },
+  {
+    -- Everything mason installs: language servers, formatters, debug adapters.
+    -- Installed on startup, or synchronously with :MasonToolsInstallSync.
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+    config = function()
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          -- language servers (lspconfig names)
+          "lua_ls",
+          "ts_ls",
+          "graphql",
+          "jsonls",
+          "rust_analyzer",
+          "zls",
+          "biome",
+          -- formatters
+          "stylua",
+          "prettier",
+          -- debug adapters
+          "js-debug-adapter",
+        },
       })
     end,
   },
@@ -43,10 +66,8 @@ return {
       vim.lsp.config['rust_analyzer'] = {}
       vim.lsp.enable('rust_analyzer')
       
-      -- Configure zls
-      vim.lsp.config['zls'] = {
-        cmd = { vim.fn.expand("~/Codes/zig/zls/zig-out/bin/zls") },
-      }
+      -- Configure zls (installed by mason)
+      vim.lsp.config['zls'] = {}
       vim.lsp.enable('zls')
       
       -- Configure biome to not conflict with ts_ls

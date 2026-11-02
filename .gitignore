@@ -17,6 +17,7 @@ Thumbs.db
 # Local overrides (not committed)
 .luarc.local.json
 *.local.lua
+lua/config/local.lua
 
 # Claude Code project state
 .claude/

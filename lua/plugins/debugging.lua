@@ -27,8 +27,9 @@ return {
       host = "localhost",
       port = "${port}",
       executable = {
-        command = "node",
-        args = { "/Users/thalesbruno/codes/javascript/js-debug/src/dapDebugServer.js", "${port}" },
+        -- installed by mason (see lua/plugins/lsp.lua), which puts it on PATH
+        command = "js-debug-adapter",
+        args = { "${port}" },
       },
     }
 
@@ -83,7 +84,7 @@ return {
     vim.fn.sign_define('DapBreakpoint', {text='󰯯 ', texthl='DapBreakpointSign', linehl='', numhl=''})
     vim.fn.sign_define('DapBreakpointCondition', {text='󰯲 ', texthl='DapBreakpointConditionSign', linehl='', numhl=''})
     vim.fn.sign_define('DapLogPoint', {text='󰰍 ', texthl='DapLogPointSign', linehl='', numhl=''})
-    vim.fn.sign_define('DapBreakpointRejected', {text=' ', texthl='DapBreakpointRejectedSign', lirenehl='', numhl=''})
+    vim.fn.sign_define('DapBreakpointRejected', {text=' ', texthl='DapBreakpointRejectedSign', linehl='', numhl=''})
     vim.fn.sign_define('DapStopped', {text=' ', texthl='DapStoppedSign', linehl='', numhl=''})
   end,
 }

@@ -31,5 +31,5 @@ EOF
 - Error handling: Use vim.notify for user-facing errors
 - Keymaps: Include descriptive comments with `desc` parameter
 - Plugin setup: Use return table pattern for lazy.nvim configurations
-- LSP configuration: Add new language servers in the mason-lspconfig setup
+- LSP configuration: Add new language servers (and other mason tools) to the mason-tool-installer list in lua/plugins/lsp.lua
 - Format: Keep code clean with stylua (Lua) and prettier (JS/TS)
