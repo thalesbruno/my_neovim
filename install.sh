@@ -20,18 +20,26 @@ has() { command -v "$1" >/dev/null 2>&1; }
 # --- prerequisites ---------------------------------------------------------
 say "Checking prerequisites"
 
-has nvim || die "neovim is not installed (need >= 0.11)"
+has nvim || die "neovim is not installed (need >= 0.11)
+see the Prerequisites section of https://github.com/thalesbruno/my_neovim#prerequisites"
 nvim --headless -c 'if !has("nvim-0.11") | cquit | endif' -c 'qa' \
   || die "neovim >= 0.11 is required (found: $(nvim --version | head -1))"
 
 missing_required=()
 for cmd in git curl unzip tar; do has "$cmd" || missing_required+=("$cmd"); done
+# GNU tar needs the xz binary for .tar.xz; macOS tar handles it natively
+[ "$(uname -s)" = Darwin ] || has xz || missing_required+=("xz")
 has cc || has gcc || has clang || missing_required+=("a C compiler (cc/gcc/clang)")
-has node && has npm || missing_required+=("node + npm")
-[ ${#missing_required[@]} -eq 0 ] || die "missing: ${missing_required[*]}"
+if has node && has npm; then
+  node_major="$(node -p 'process.versions.node.split(".")[0]' 2>/dev/null || echo 0)"
+  [ "$node_major" -ge 18 ] || missing_required+=("node >= 18 (found $(node --version))")
+else
+  missing_required+=("node + npm")
+fi
+[ ${#missing_required[@]} -eq 0 ] || die "missing: ${missing_required[*]}
+see the Prerequisites section of https://github.com/thalesbruno/my_neovim#prerequisites"
 
 has rg || warn "ripgrep (rg) not found: telescope live grep (<leader>fg) will not work"
-has fd || warn "fd not found (optional): telescope find_files falls back to find"
 warn "make sure your terminal uses a Nerd Font, or icons will render as boxes"
 
 # --- clone -----------------------------------------------------------------
