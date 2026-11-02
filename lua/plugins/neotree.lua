@@ -10,8 +10,12 @@ return {
     },
     config = function()
       require('neo-tree').setup({
-        source_selector = {
-          winbar = true
+        sources = { "filesystem" },
+        window = {
+          mappings = {
+            -- free <space> (leader) so which-key works inside the tree
+            ["<space>"] = "none",
+          },
         },
         filesystem = {
           filtered_items = {

@@ -8,6 +8,7 @@ return {
 
       local create_input_style = function(title)
         return {
+          relative = "editor",
           position = "30%",
           size = {
             width = 40,
@@ -52,6 +53,7 @@ return {
       -- Quit prompt
       vim.keymap.set("n", "<leader>wq", function()
         local menu = Menu({
+          relative = "editor",
           position = "50%",
           size = {
             width = 30,
@@ -94,6 +96,50 @@ return {
           menu:unmount()
         end)
       end, { desc = "Nui Quit Options Menu" })
+
+      -- Lazy sync prompt
+      vim.keymap.set("n", "<leader>ws", function()
+        local menu = Menu({
+          relative = "editor",
+          position = "50%",
+          size = {
+            width = 30,
+            height = 2,
+          },
+          border = {
+            style = "rounded",
+            text = {
+              top = "Sync Lazy Plugins?",
+              top_align = "center",
+            },
+          },
+          win_options = {
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+          },
+        }, {
+          lines = {
+            Menu.item("Sync"),
+            Menu.item("Cancel"),
+          },
+          max_width = 30,
+          keymap = {
+            focus_next = { "j", "<Down>" },
+            focus_prev = { "k", "<Up>" },
+            close = { "<Esc>" },
+            submit = { "<CR>" },
+          },
+          on_submit = function(item)
+            if item.text == "Sync" then
+              require("lazy").sync()
+            end
+          end,
+        })
+
+        menu:mount()
+        menu:on(event.BufLeave, function()
+          menu:unmount()
+        end)
+      end, { desc = "Nui Lazy Sync Menu" })
     end,
   },
 }

@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "graphql", "jsonls", "zls" },
+        ensure_installed = { "lua_ls", "ts_ls", "graphql", "jsonls", "rust_analyzer", "zls" },
       })
     end,
   },
@@ -38,6 +38,10 @@ return {
       -- Configure jsonls
       vim.lsp.config['jsonls'] = {}
       vim.lsp.enable('jsonls')
+
+      -- Configure rust_analyzer
+      vim.lsp.config['rust_analyzer'] = {}
+      vim.lsp.enable('rust_analyzer')
       
       -- Configure zls
       vim.lsp.config['zls'] = {
@@ -64,6 +68,7 @@ return {
 
       local create_input_style = function(title)
         return {
+          relative = "editor",
           position = "30%",
           size = {
             width = 40,

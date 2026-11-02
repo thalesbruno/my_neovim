@@ -147,6 +147,7 @@ return {
         end
 
         local menu = Menu({
+          relative = "editor",
           position = "50%",
           size = {
             width = 60,
